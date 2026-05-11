@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLPVPV — Official Battle Royale Hub</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap');
+
+        :root {
+            --bg: #05050a;
+            --surface: #0f0f1b;
+            --accent: #8b5cf6;
+            --accent-glow: rgba(139, 92, 246, 0.4);
+            --text-main: #e2e8f0;
+            --text-dim: #94a3b8;
+            
+            /* Team Farben */
+            --color-owner: #ff4757;
+            --color-dev: #2ed573;
+            --color-mod: #eccc68;
+            --color-media: #70a1ff;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text-main);
+            font-family: 'Rajdhani', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .bg-glow {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* ── NAVIGATION ── */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: sticky; top: 0; background: rgba(5, 5, 10, 0.8); backdrop-filter: blur(10px); z-index: 100;
+        }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a { 
+            color: var(--text-dim); text-decoration: none; text-transform: uppercase; 
+            font-weight: 600; font-size: 0.85rem; transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* ── HERO SECTION ── */
+        .hero { text-align: center; padding: 80px 0 60px; }
+        .event-badge {
+            display: inline-block; padding: 5px 15px; background: var(--accent-glow);
+            border: 1px solid var(--accent); border-radius: 20px; color: #ddd;
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;
+        }
+        h1 {
+            font-size: clamp(3rem, 8vw, 5rem); line-height: 1; letter-spacing: 5px;
+            background: linear-gradient(to bottom, #fff 40%, #8b5cf6);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px;
+        }
+        .hero p { color: var(--text-dim); font-size: 1.1rem; max-width: 600px; margin: 0 auto 30px; }
+
+        .btn {
+            display: inline-block; padding: 12px 35px; background: var(--accent);
+            color: white; text-decoration: none; border-radius: 5px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
+            box-shadow: 0 0 20px var(--accent-glow); border: none; cursor: pointer;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 0 35px var(--accent-glow); }
+
+        /* ── IP MODAL ── */
+        .modal {
+            display: none; position: fixed; z-index: 1000; left: 0; top: 0;
+            width: 100%; height: 100%; background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px); align-items: center; justify-content: center;
+        }
+        .modal-content {
+            background: var(--surface); padding: 40px; border-radius: 20px;
+            border: 2px solid var(--accent); text-align: center; max-width: 450px; width: 90%;
+            position: relative; box-shadow: 0 0 50px var(--accent-glow);
+        }
+        .close-modal {
+            position: absolute; top: 15px; right: 20px; font-size: 2rem;
+            color: var(--text-dim); cursor: pointer;
+        }
+        .ip-display {
+            background: #000; padding: 15px; border-radius: 10px;
+            font-family: 'Share Tech Mono', monospace; font-size: 1.2rem;
+            color: var(--accent); margin: 20px 0; border: 1px solid rgba(255,255,255,0.1);
+            cursor: pointer;
+        }
+
+        /* ── COUNTDOWN ── */
+        .countdown-container {
+            background: var(--surface); border: 1px solid rgba(255,255,255,0.05);
+            padding: 25px; border-radius: 15px; display: flex; justify-content: center;
+            gap: 30px; margin-top: 40px;
+        }
+        .cd-item { text-align: center; }
+        .cd-num { font-size: 2rem; font-weight: 700; color: var(--accent); display: block; font-family: 'Share Tech Mono'; }
+        .cd-label { font-size: 0.7rem; text-transform: uppercase; color: var(--text-dim); }
+
+        /* ── TEAM SECTION ── */
+        .team-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;
+            margin-top: 40px;
+        }
+        .team-card {
+            background: var(--surface); padding: 25px; border-radius: 12px;
+            text-align: center; border: 1px solid rgba(255,255,255,0.03);
+            transition: 0.3s;
+        }
+        .team-card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .rank-badge {
+            display: inline-block; padding: 2px 10px; border-radius: 4px; 
+            font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 10px;
+        }
+        .rank-owner { background: rgba(255, 71, 87, 0.2); color: var(--color-owner); }
+        .rank-dev { background: rgba(46, 213, 115, 0.2); color: var(--color-dev); }
+        .rank-mod { background: rgba(236, 204, 104, 0.2); color: var(--color-mod); }
+        .rank-media { background: rgba(112, 161, 255, 0.2); color: var(--color-media); }
+        .team-name { font-size: 1.2rem; font-weight: 600; display: block; }
+
+        /* ── DISCORD & RULES ── */
+        .flex-row {
+            display: flex; flex-wrap: wrap; gap: 30px; margin-top: 60px; align-items: flex-start;
+        }
+        .discord-side { flex: 1; min-width: 320px; display: flex; flex-direction: column; align-items: center; }
+        .rules-side { flex: 1.5; min-width: 320px; }
+
+        .section-title { font-size: 1.8rem; margin-bottom: 30px; letter-spacing: 2px; text-transform: uppercase; border-left: 4px solid var(--accent); padding-left: 15px; width: 100%; }
+
+        .rule-item {
+            background: var(--surface); padding: 15px 20px; border-radius: 8px; margin-bottom: 12px;
+            display: flex; align-items: center; gap: 15px; border: 1px solid rgba(255,255,255,0.02);
+        }
+        .rule-num { color: var(--accent); font-weight: 700; font-family: 'Share Tech Mono'; }
+
+        /* Discord Button Styling */
+        .discord-btn {
+            margin-top: 15px; background: #5865F2; width: 100%; text-align: center;
+            padding: 12px; border-radius: 5px; color: white; text-decoration: none;
+            font-weight: 700; text-transform: uppercase; font-size: 0.9rem; transition: 0.3s;
+        }
+        .discord-btn:hover { background: #4752c4; transform: scale(1.02); }
+
+        footer { text-align: center; padding: 60px 0; color: #333; font-size: 0.8rem; }
+
+        @media (max-width: 768px) {
+            .flex-row { flex-direction: column; }
+            .discord-side iframe { width: 100% !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <!-- IP POPUP -->
+    <div id="ipModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeIp">&times;</span>
+            <h2 style="text-transform: uppercase; letter-spacing: 2px;">Server IP</h2>
+            <div class="ip-display" id="copyIp">nicominecith.qd.je:15613</div>
+            <p id="copyStatus" style="font-size: 0.8rem; color: var(--color-dev); opacity: 0;">Kopiert!</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <nav>
+            <div style="font-weight: 700; font-size: 1.5rem; letter-spacing: 2px; color: #fff;">SLPVPV</div>
+            <div class="nav-links">
+                <a href="#about">Infos</a>
+                <a href="#team">Team</a>
+                <a href="#discord">Discord</a>
+                <a href="#rules">Regeln</a>
+            </div>
+        </nav>
+
+        <header class="hero">
+            <span class="event-badge">Season 1: Startet Bald</span>
+            <h1>BATTLE ROYALE</h1>
+            <p>Das ultimative Minecraft-Event. Überlebe die Zone, loote Kisten und besiege deine Gegner.</p>
+            <button class="btn" id="openIp">Jetzt Mitmachen</button>
+
+            <div class="countdown-container">
+                <div class="cd-item"><span class="cd-num" id="days">00</span><span class="cd-label">Tage</span></div>
+                <div class="cd-item"><span class="cd-num" id="hours">00</span><span class="cd-label">Std</span></div>
+                <div class="cd-item"><span class="cd-num" id="mins">00</span><span class="cd-label">Min</span></div>
+                <div class="cd-item"><span class="cd-num" id="secs">00</span><span class="cd-label">Sek</span></div>
+            </div>
+        </header>
+
+        <section id="team">
+            <h2 class="section-title">Unser Team</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <span class="rank-badge rank-owner">Owner</span>
+                    <span class="team-name">Sato & LIso</span>
+                </div>
+                <div class="team-card">
+                    <span class="rank-badge rank-dev">Developer</span>
+                    <span class="team-name">Nicominecith</span>
+                </div>
+                <div class="team-card">
+                    <span class="rank-badge rank-mod">Moderator</span>
+                    <span class="team-name">J8n4z</span>
+                </div>
+                <div class="team-card">
+                    <span class="rank-badge rank-media">Media</span>
+                    <span class="team-name">Elitelaser & Michel</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="flex-row">
+            <section class="rules-side" id="rules">
+                <h2 class="section-title">Regeln</h2>
+                <div class="rule-item"><span class="rule-num">01</span><p>Keine Hacks oder Cheats.</p></div>
+                <div class="rule-item"><span class="rule-num">02</span><p>Kein Teaming in Solo-Modi.</p></div>
+                <div class="rule-item"><span class="rule-num">03</span><p>Bugusing sofort melden.</p></div>
+                <div class="rule-item"><span class="rule-num">04</span><p>Respektvoller Umgang.</p></div>
+            </section>
+
+            <section class="discord-side" id="discord">
+                <h2 class="section-title">Discord</h2>
+                <!-- DISCORD WIDGET -->
+                <iframe src="https://discord.com/widget?id=1503144190886809760&theme=dark" width="100%" height="450" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                <!-- DISCORD LINK BUTTON -->
+                <a href="https://discord.gg/CK8hHpJGSM" target="_blank" class="discord-btn">Direkt beitreten!</a>
+            </section>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 SLPVPV Project · Managed by Nicominecith</p>
+        </footer>
+    </div>
+
+    <script>
+        const modal = document.getElementById("ipModal");
+        const btn = document.getElementById("openIp");
+        const closeSpan = document.getElementById("closeIp");
+        const ipBox = document.getElementById("copyIp");
+        const status = document.getElementById("copyStatus");
+
+        btn.onclick = () => { modal.style.display = "flex"; }
+        closeSpan.onclick = () => { modal.style.display = "none"; }
+        window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; }
+
+        ipBox.onclick = () => {
+            navigator.clipboard.writeText(ipBox.innerText);
+            status.style.opacity = "1";
+            setTimeout(() => { status.style.opacity = "0"; }, 2000);
+        }
+
+        const eventDate = new Date();
+        eventDate.setDate(eventDate.getDate() + 7); 
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = eventDate - now;
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById('days').innerText = d.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+            document.getElementById('mins').innerText = m.toString().padStart(2, '0');
+            document.getElementById('secs').innerText = s.toString().padStart(2, '0');
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
