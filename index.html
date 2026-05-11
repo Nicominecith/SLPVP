@@ -281,7 +281,7 @@
         .twitch-section { padding: 70px 0; }
 
         .twitch-grid {
-            display: grid; grid-template-columns: repeat(4,1fr); gap: 18px;
+            display: grid; grid-template-columns: repeat(5,1fr); gap: 18px;
         }
 
         .twitch-card {
@@ -403,6 +403,9 @@
         [data-r].vis { opacity: 1; transform: none; }
 
         /* ── RESPONSIVE ── */
+        @media (max-width: 1100px) {
+            .twitch-grid { grid-template-columns: repeat(3,1fr); }
+        }
         @media (max-width: 1000px) {
             .twitch-grid { grid-template-columns: repeat(2,1fr); }
             .team-row-3 { grid-template-columns: repeat(2,1fr); }
