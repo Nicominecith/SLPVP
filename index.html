@@ -698,6 +698,32 @@
                 </div>
             </div>
 
+            <!-- derdickemichi -->
+            <div class="twitch-card" data-r style="transition-delay:.32s">
+                <div class="twitch-card-top">
+                    <span class="twitch-live-badge">Twitch</span>
+                </div>
+                <div class="twitch-avatar-wrap">
+                    <div class="twitch-avatar">
+                        <img
+                            src="https://static-cdn.jtvnw.net/user-default-pictures-uv1/75305d54-c7cc-40d1-bb9c-91fbe85943c7-profile_image-70x70.png"
+                            onerror="this.style.display='none';this.parentElement.textContent='MC'"
+                            alt="Michel"
+                            id="avatar-michel"
+                        >
+                    </div>
+                </div>
+                <div class="twitch-body">
+                    <div class="twitch-name">Michel</div>
+                    <div class="twitch-handle">derdickemichi</div>
+                    <div class="twitch-desc" data-i18n="tc_michel">Media Team · Content Creator</div>
+                    <a href="https://twitch.tv/derdickemichi" target="_blank" class="twitch-btn">
+                        <svg class="twitch-logo" viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>
+                        <span data-i18n="watch">Ansehen</span>
+                    </a>
+                </div>
+            </div>
+
         </div>
         <!-- Note about avatars -->
         <p style="text-align:center;font-size:.72rem;color:var(--dim);margin-top:18px;" data-i18n="twitch_note">Profilbilder werden direkt von Twitch geladen · Profile pictures loaded directly from Twitch</p>
@@ -784,6 +810,7 @@ const T = {
         tc_lisosky:'Owner · Minecraft Content',
         tc_sato:'Owner · SLPVP Events',
         tc_elite:'Media Team · Content Creator',
+        tc_michel:'Media Team · Content Creator',
         watch:'Ansehen',
         twitch_note:'Profilbilder werden direkt von Twitch geladen',
         rules_lbl:'Spielregeln', rules_title:'Regelwerk',
@@ -808,6 +835,7 @@ const T = {
         tc_lisosky:'Owner · Minecraft Content',
         tc_sato:'Owner · SLPVP Events',
         tc_elite:'Media Team · Content Creator',
+        tc_michel:'Media Team · Content Creator',
         watch:'Watch',
         twitch_note:'Profile pictures loaded directly from Twitch',
         rules_lbl:'Game Rules', rules_title:'Rulebook',
@@ -839,7 +867,8 @@ const twitchChannels = {
     'avatar-nico':    'nicominecith_ttv',
     'avatar-lisosky': 'lisoskytv',
     'avatar-sato':    'xsattottv',
-    'avatar-elite':   'elitelaser672'
+    'avatar-elite':   'elitelaser672',
+    'avatar-michel':  'derdickemichi'
 };
 Object.entries(twitchChannels).forEach(([id, channel]) => {
     // Load avatar from Twitch's public thumbnail endpoint
