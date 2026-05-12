@@ -86,7 +86,6 @@
 
         .nav-right { display: flex; align-items: center; gap: 10px; }
 
-        /* Lang switcher */
         .lang-sw {
             display: flex; background: rgba(255,255,255,.04);
             border: 1px solid var(--border); border-radius: 50px;
@@ -104,7 +103,6 @@
             color: #fff;
         }
 
-        /* Hamburger */
         .ham { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
         .ham span { display: block; width: 22px; height: 2px; background: var(--mid); border-radius: 2px; transition: var(--ease); }
         .ham.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -146,11 +144,10 @@
             box-shadow: 0 0 20px rgba(157,78,237,.12);
         }
         .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--purple); animation: blink 1.5s ease-in-out infinite; }
-        @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:.3; } }
 
         h1 {
             font-family: 'Orbitron', monospace;
-            font-size: clamp(2.8rem,9vw,6rem);
+            font-size: clamp(2.8rem,9vw,5rem);
             line-height: .92; letter-spacing: 2px; font-weight: 900;
             background: linear-gradient(130deg, #fff 0%, var(--blue) 40%, var(--purple) 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -179,54 +176,19 @@
             border: 1px solid var(--border2);
         }
         .btn-ghost:hover { color: var(--blue); background: var(--glow-b); transform: translateY(-2px); }
-        .btn-twitch {
-            background: var(--twitch); color: #fff;
-            box-shadow: 0 4px 20px rgba(145,70,255,.3);
-        }
-        .btn-twitch:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(145,70,255,.5); filter: brightness(1.1); }
-
-        /* ── INFO STRIP ── */
-        .info-strip {
-            display: grid; grid-template-columns: repeat(3,1fr);
-            border: 1px solid var(--border); border-radius: var(--r);
-            overflow: hidden; margin: 56px 0; background: var(--border);
-            gap: 1px;
-        }
-        .info-cell {
-            background: var(--surface); padding: 26px 18px; text-align: center;
-        }
-        .info-icon { font-size: 1.5rem; margin-bottom: 8px; }
-        .info-val {
-            font-family: 'Orbitron', monospace; font-size: 1.1rem;
-            font-weight: 700; color: var(--blue); display: block; margin-bottom: 4px;
-        }
-        .info-lbl { font-size: .72rem; color: var(--dim); text-transform: uppercase; letter-spacing: 1.5px; }
-
-        /* ── SECTION HEADER ── */
-        .sec-head { text-align: center; margin-bottom: 44px; }
-        .sec-label {
-            display: inline-block; font-size: .68rem; color: var(--blue);
-            text-transform: uppercase; letter-spacing: 3px; margin-bottom: 10px;
-            font-family: 'Share Tech Mono', monospace;
-        }
-        .sec-title {
-            font-family: 'Orbitron', monospace;
-            font-size: clamp(1.5rem,4vw,2.2rem); font-weight: 700;
-            background: linear-gradient(90deg, var(--blue), var(--purple));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            letter-spacing: 2px;
-        }
-        .sec-title.plain { background: none; -webkit-text-fill-color: var(--text); }
 
         /* ── TEAM SECTION ── */
         .team-section { padding: 70px 0 20px; }
-
-        .team-row {
-            display: grid; gap: 18px; margin-bottom: 18px;
+        .team-grid {
+            display: flex; flex-direction: column; gap: 24px;
         }
-        .team-row-2 { grid-template-columns: repeat(2,1fr); }
-        .team-row-3 { grid-template-columns: repeat(3,1fr); }
-        .team-row-center { max-width: 380px; margin-left: auto; margin-right: auto; }
+        .team-row {
+            display: grid; gap: 18px; width: 100%;
+        }
+        .team-row-4 { grid-template-columns: repeat(4, 1fr); max-width: 1000px; margin: 0 auto; }
+        .team-row-3 { grid-template-columns: repeat(3, 1fr); max-width: 900px; margin: 0 auto; }
+        .team-row-2 { grid-template-columns: repeat(2, 1fr); max-width: 600px; margin: 0 auto; }
+        .team-row-1 { grid-template-columns: 1fr; max-width: 290px; margin: 0 auto; }
 
         .team-card {
             background: var(--surface); border: 1px solid var(--border);
@@ -238,18 +200,14 @@
             content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
             background: var(--c-accent, var(--blue));
         }
-        .team-card::after {
-            content: ''; position: absolute; inset: 0; pointer-events: none;
-            background: radial-gradient(ellipse at top, var(--c-glow, rgba(0,212,255,.06)) 0%, transparent 65%);
-        }
         .team-card:hover {
             transform: translateY(-7px); border-color: var(--c-accent, var(--blue));
-            box-shadow: 0 18px 48px rgba(0,0,0,.28), 0 0 40px var(--c-glow, rgba(0,212,255,.1));
+            box-shadow: 0 18px 48px rgba(0,0,0,.28);
         }
-        .c-owner  { --c-accent: var(--red);    --c-glow: rgba(255,60,60,.1); }
-        .c-dev    { --c-accent: var(--blue);   --c-glow: rgba(0,212,255,.1); }
-        .c-mod    { --c-accent: var(--green);  --c-glow: rgba(0,255,136,.1); }
-        .c-media  { --c-accent: var(--purple); --c-glow: rgba(157,78,237,.1); }
+        .c-owner  { --c-accent: var(--red); }
+        .c-dev    { --c-accent: var(--blue); }
+        .c-mod    { --c-accent: var(--green); }
+        .c-media  { --c-accent: var(--purple); }
 
         .role-badge {
             display: inline-block; padding: 3px 13px; border-radius: 50px;
@@ -257,9 +215,9 @@
             letter-spacing: 1.5px; margin-bottom: 18px;
             font-family: 'Share Tech Mono', monospace; border: 1px solid;
         }
-        .rb-owner { background: rgba(255,60,60,.08); color: var(--red);    border-color: rgba(255,60,60,.25); }
-        .rb-dev   { background: rgba(0,212,255,.08); color: var(--blue);   border-color: rgba(0,212,255,.25); }
-        .rb-mod   { background: rgba(0,255,136,.08); color: var(--green);  border-color: rgba(0,255,136,.25); }
+        .rb-owner { background: rgba(255,60,60,.08); color: var(--red); border-color: rgba(255,60,60,.25); }
+        .rb-dev   { background: rgba(0,212,255,.08); color: var(--blue); border-color: rgba(0,212,255,.25); }
+        .rb-mod   { background: rgba(0,255,136,.08); color: var(--green); border-color: rgba(0,255,136,.25); }
         .rb-media { background: rgba(157,78,237,.08); color: var(--purple); border-color: rgba(157,78,237,.25); }
 
         .team-avatar {
@@ -270,94 +228,46 @@
             display: flex; align-items: center; justify-content: center;
             font-family: 'Orbitron', monospace; font-size: 1rem;
             font-weight: 700; color: var(--c-accent, var(--blue));
-            overflow: hidden;
         }
-        .team-avatar img { width: 100%; height: 100%; object-fit: cover; }
 
         .t-name { font-size: .98rem; font-weight: 700; color: #fff; letter-spacing: .3px; }
         .t-role { font-size: .72rem; color: var(--dim); margin-top: 6px; text-transform: uppercase; letter-spacing: 1px; }
 
         /* ── TWITCH SECTION ── */
         .twitch-section { padding: 70px 0; }
-
         .twitch-grid {
-            display: grid; grid-template-columns: repeat(5,1fr); gap: 18px;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 18px;
         }
-
         .twitch-card {
             background: var(--surface); border: 1px solid var(--border);
             border-radius: var(--r); overflow: hidden;
             transition: var(--ease); display: flex; flex-direction: column;
         }
-        .twitch-card:hover {
-            transform: translateY(-6px); border-color: rgba(145,70,255,.4);
-            box-shadow: 0 16px 42px rgba(0,0,0,.3), 0 0 30px rgba(145,70,255,.12);
-        }
-        .twitch-card-top {
-            position: relative; background: #0e0e1a; height: 54px;
-        }
-        .twitch-card-top::before {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(135deg, rgba(145,70,255,.15), rgba(0,212,255,.08));
-        }
+        .twitch-card:hover { transform: translateY(-6px); border-color: var(--twitch); }
+        .twitch-card-top { position: relative; background: #0e0e1a; height: 50px; }
         .twitch-live-badge {
             position: absolute; top: 10px; right: 10px;
-            background: rgba(145,70,255,.9); color: #fff;
-            font-size: .58rem; font-weight: 800; padding: 2px 8px; border-radius: 4px;
-            text-transform: uppercase; letter-spacing: 1px;
-            font-family: 'Share Tech Mono', monospace;
+            background: var(--twitch); color: #fff;
+            font-size: .55rem; font-weight: 800; padding: 2px 6px; border-radius: 4px;
+            text-transform: uppercase;
         }
-        .twitch-avatar-wrap {
-            display: flex; justify-content: center; margin-top: -28px; position: relative; z-index: 1;
-        }
+        .twitch-avatar-wrap { display: flex; justify-content: center; margin-top: -25px; position: relative; z-index: 1; }
         .twitch-avatar {
-            width: 56px; height: 56px; border-radius: 50%;
-            border: 3px solid var(--twitch);
-            background: #1a1a2e; overflow: hidden;
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Orbitron', monospace; font-size: .85rem;
-            font-weight: 700; color: var(--twitch);
+            width: 50px; height: 50px; border-radius: 50%;
+            border: 3px solid var(--twitch); background: #1a1a2e; overflow: hidden;
         }
-        .twitch-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .twitch-body { padding: 14px 18px 20px; text-align: center; flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .twitch-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .twitch-body { padding: 12px 15px 20px; text-align: center; flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; }
         .twitch-name { font-size: .9rem; font-weight: 700; color: #fff; }
-        .twitch-handle { font-size: .72rem; color: var(--twitch); font-family: 'Share Tech Mono', monospace; }
-        .twitch-desc { font-size: .75rem; color: var(--dim); line-height: 1.5; }
+        .twitch-handle { font-size: .65rem; color: var(--twitch); font-family: 'Share Tech Mono', monospace; }
+        .twitch-desc { font-size: .7rem; color: var(--dim); line-height: 1.4; margin-bottom: 8px; min-height: 2.8em; }
         .twitch-btn {
-            display: inline-flex; align-items: center; gap: 7px; margin-top: 4px;
+            display: inline-flex; align-items: center; gap: 6px;
             background: var(--twitch); color: #fff; text-decoration: none;
-            padding: 8px 18px; border-radius: 8px; font-size: .73rem;
-            font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-            transition: var(--ease);
+            padding: 7px 14px; border-radius: 6px; font-size: .7rem;
+            font-weight: 700; text-transform: uppercase; transition: var(--ease);
         }
-        .twitch-btn:hover { filter: brightness(1.15); transform: scale(1.04); }
-        .twitch-logo { width: 14px; height: 14px; fill: #fff; flex-shrink: 0; }
-
-        /* ── SPLIT (rules + discord) ── */
-        .split { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 30px 0 80px; align-items: start; }
-
-        .rules-list { display: flex; flex-direction: column; gap: 12px; }
-        .rule-item {
-            display: flex; align-items: flex-start; gap: 16px;
-            background: var(--surface); border: 1px solid var(--border);
-            border-radius: 12px; padding: 18px 20px; transition: var(--ease);
-        }
-        .rule-item:hover { border-color: var(--blue); background: var(--surface2); }
-        .rule-num { font-family: 'Share Tech Mono', monospace; font-size: .95rem; color: var(--blue); min-width: 28px; }
-        .rule-body {}
-        .rule-t { font-weight: 700; color: var(--text); font-size: .9rem; margin-bottom: 3px; }
-        .rule-d { font-size: .82rem; color: var(--mid); line-height: 1.5; }
-
-        .discord-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
-        .discord-card iframe { display: block; }
-        .discord-foot { padding: 18px; }
-        .dc-join {
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            background: #5865F2; padding: 15px; border-radius: 10px;
-            color: #fff; text-decoration: none; font-weight: 700; font-size: .9rem;
-            transition: var(--ease);
-        }
-        .dc-join:hover { background: #4752c4; transform: translateY(-2px); box-shadow: 0 8px 22px rgba(88,101,242,.4); }
+        .twitch-btn:hover { filter: brightness(1.2); }
 
         /* ── MODAL ── */
         .modal {
@@ -367,64 +277,51 @@
         }
         .modal-box {
             background: #090920; border: 1px solid var(--blue); border-radius: 20px;
-            padding: 44px 34px; max-width: 440px; width: 100%; text-align: center;
-            box-shadow: 0 0 60px rgba(0,212,255,.18), 0 0 100px rgba(157,78,237,.1);
-            animation: popIn .28s ease;
+            padding: 40px 30px; max-width: 440px; width: 100%; text-align: center;
         }
-        @keyframes popIn { from { opacity:0; transform:scale(.9) translateY(18px); } to { opacity:1; transform:none; } }
-        .modal-title { font-family: 'Orbitron', monospace; font-size: 1.2rem; font-weight: 700; letter-spacing: 3px; margin-bottom: 6px; }
-        .modal-sub { color: var(--dim); font-size: .82rem; margin-bottom: 22px; }
         .ip-box {
-            background: #000; padding: 15px 18px; border-radius: 10px;
-            font-family: 'Share Tech Mono', monospace; font-size: 1.1rem; color: var(--blue);
-            border: 1px solid rgba(0,212,255,.2); cursor: pointer; transition: var(--ease);
-            display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px;
+            background: #000; padding: 15px; border-radius: 10px; margin: 20px 0 10px;
+            font-family: 'Share Tech Mono', monospace; color: var(--blue);
+            border: 1px solid rgba(0,212,255,0.2); cursor: pointer; transition: var(--ease);
         }
-        .ip-box:hover { border-color: var(--blue); background: #05050f; }
-        .copy-ok { font-size: .75rem; color: var(--green); font-weight: 700; letter-spacing: 1.5px; height: 18px; opacity: 0; transition: opacity .3s; margin-bottom: 18px; }
+        .copy-ok { color: var(--green); font-size: .7rem; height: 18px; opacity: 0; transition: 0.3s; }
         .modal-close {
-            background: rgba(255,255,255,.05); border: 1px solid var(--border);
-            color: var(--dim); padding: 9px 24px; border-radius: 8px;
-            cursor: pointer; font-family: 'Exo 2', sans-serif; font-size: .82rem;
-            font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: var(--ease);
+            margin-top: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+            color: var(--dim); padding: 8px 20px; border-radius: 8px; cursor: pointer;
         }
-        .modal-close:hover { border-color: var(--border2); color: var(--text); }
 
-        /* ── FOOTER ── */
-        footer { border-top: 1px solid var(--border); padding: 46px 0; text-align: center; margin-top: 20px; }
-        .foot-logo { font-family: 'Orbitron', monospace; font-size: 1.3rem; font-weight: 900; letter-spacing: 4px; background: linear-gradient(90deg, var(--blue), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; }
-        .foot-text { color: var(--dim); font-size: .82rem; }
+        /* ── RULES SECTION ── */
+        .rules-section { padding: 50px 0 100px; }
+        .split { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; }
+        .rule-item {
+            display: flex; gap: 16px; background: var(--surface);
+            border: 1px solid var(--border); border-radius: 12px;
+            padding: 18px 20px; margin-bottom: 12px;
+        }
+        .rule-num { font-family: 'Share Tech Mono', monospace; font-size: .95rem; color: var(--blue); }
+        .rule-t { font-weight: 700; color: var(--text); font-size: .9rem; margin-bottom: 4px; }
+        .rule-d { font-size: .8rem; color: var(--mid); line-height: 1.5; }
 
-        /* ── SEP ── */
-        .sep { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 8px 0; }
+        footer { border-top: 1px solid var(--border); padding: 50px 0; text-align: center; }
+        .foot-logo { font-family: 'Orbitron', monospace; font-size: 1.2rem; font-weight: 900; background: linear-gradient(90deg, var(--blue), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+        .foot-text { color: var(--dim); font-size: .75rem; }
 
-        /* ── REVEAL ── */
-        [data-r] { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+        .sec-head { text-align: center; margin-bottom: 44px; }
+        .sec-label { display: inline-block; font-size: .68rem; color: var(--blue); text-transform: uppercase; letter-spacing: 3px; margin-bottom: 10px; font-family: 'Share Tech Mono', monospace; }
+        .sec-title { font-family: 'Orbitron', monospace; font-size: clamp(1.5rem,4vw,2.2rem); font-weight: 700; background: linear-gradient(90deg, var(--blue), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 2px; }
+
+        [data-r] { opacity: 0; transform: translateY(20px); transition: 0.6s ease-out; }
         [data-r].vis { opacity: 1; transform: none; }
 
-        /* ── RESPONSIVE ── */
-        @media (max-width: 1100px) {
-            .twitch-grid { grid-template-columns: repeat(3,1fr); }
-        }
-        @media (max-width: 1000px) {
-            .twitch-grid { grid-template-columns: repeat(2,1fr); }
-            .team-row-3 { grid-template-columns: repeat(2,1fr); }
-        }
-        @media (max-width: 800px) {
+        @media (max-width: 900px) {
             .split { grid-template-columns: 1fr; }
-            .team-row-2 { grid-template-columns: 1fr; }
-            .team-row-center { max-width: 100%; }
+            .team-row-4 { grid-template-columns: repeat(2, 1fr); }
+            .team-row-3 { grid-template-columns: repeat(2, 1fr); }
         }
-        @media (max-width: 700px) {
+        @media (max-width: 600px) {
             .nav-links { display: none; }
             .ham { display: flex; }
-            .info-strip { grid-template-columns: 1fr; }
-            .info-strip { gap: 1px; }
-        }
-        @media (max-width: 560px) {
-            .twitch-grid { grid-template-columns: 1fr; }
-            .team-row-3 { grid-template-columns: 1fr; }
-            h1 { letter-spacing: 0; }
+            .team-row-2, .team-row-3, .team-row-4 { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -433,17 +330,13 @@
 <div class="bg-layer"></div>
 <div class="grid-layer"></div>
 
-<!-- MODAL -->
-<div id="modal" class="modal" role="dialog" aria-modal="true">
+<div id="modal" class="modal">
     <div class="modal-box">
-        <div class="modal-title">SERVER IP</div>
-        <p class="modal-sub" data-i18n="modal_sub">Klicke zum Kopieren</p>
-        <div class="ip-box" id="ipCopy" role="button" tabindex="0">
-            <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            nicominecith.qd.je:15613
-        </div>
-        <p class="copy-ok" id="copyOk" data-i18n="copy_ok">✓ KOPIERT / COPIED</p>
-        <button class="modal-close" id="modalClose" data-i18n="close">Schließen / Close</button>
+        <div class="modal-title" style="font-family:'Orbitron'; letter-spacing:2px; font-weight:700;">SERVER IP</div>
+        <p style="font-size:0.8rem; color:var(--dim);" data-i18n="modal_sub">Klicke zum Kopieren</p>
+        <div class="ip-box" id="ipCopy">nicominecith.qd.je:15613</div>
+        <p class="copy-ok" id="copyOk" data-i18n="copy_ok">✓ KOPIERT</p>
+        <button class="modal-close" id="modalClose" data-i18n="close">Schließen</button>
     </div>
 </div>
 
@@ -455,468 +348,296 @@
                 <a href="#team" data-i18n="n_team">Team</a>
                 <a href="#twitch" data-i18n="n_streams">Streams</a>
                 <a href="#rules" data-i18n="n_rules">Regeln</a>
-                <a href="#discord">Discord</a>
+                <a href="https://discord.gg/CK8hHpJGSM" target="_blank">Discord</a>
             </div>
             <div class="nav-right">
                 <div class="lang-sw">
                     <button class="lang-btn on" id="btnDE">DE</button>
                     <button class="lang-btn" id="btnEN">EN</button>
                 </div>
-                <button class="ham" id="ham" aria-label="Menu">
-                    <span></span><span></span><span></span>
-                </button>
+                <button class="ham" id="ham"><span></span><span></span><span></span></button>
             </div>
         </div>
         <div class="mob-menu" id="mobMenu">
             <a href="#team" data-i18n="n_team">Team</a>
             <a href="#twitch" data-i18n="n_streams">Streams</a>
             <a href="#rules" data-i18n="n_rules">Regeln</a>
-            <a href="#discord">Discord</a>
             <a href="#" id="mobJoin" data-i18n="n_join">Beitreten</a>
         </div>
     </nav>
 
-    <!-- HERO -->
     <header class="hero">
         <div class="logo-ring" data-r>
             <img src="https://images-ext-1.discordapp.net/external/ZgD6aYZvnybOiPTx9MeKWnTxZ9CPdZeLga_Nywgmf-8/https/s1.directupload.eu/images/260511/wt9i2rsc.png?format=webp&quality=lossless" alt="SLPVP Logo">
         </div>
         <div class="badge" data-r>
-            <span class="badge-dot"></span>
+            <span class="badge-dot" style="width: 6px; height: 6px; border-radius: 50%; background: var(--purple); animation: blink 1.5s ease-in-out infinite;"></span>
             <span data-i18n="badge">One Day Varo Event</span>
         </div>
         <h1 data-r>ONE DAY<br>VARO</h1>
-        <p class="hero-p" data-r data-i18n="hero_sub">Das ultimative Minecraft-PvP-Event. Ein Tag. Ein Überleben. Kämpfe gegen die Besten und schreibe Geschichte auf dem SLPVP-Server.</p>
+        <p class="hero-p" data-r data-i18n="hero_sub">Kämpfe gegen die Besten und schreibe Geschichte auf dem SLPVP-Server.</p>
         <div class="hero-btns" data-r>
             <button class="btn btn-primary" id="openIp">
-                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-                <span data-i18n="btn_join">Server beitreten</span>
+                <span data-i18n="btn_join">Beitreten</span>
             </button>
             <a href="#twitch" class="btn btn-ghost">
-                <svg class="twitch-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>
                 <span data-i18n="btn_streams">Streams</span>
-            </a>
-            <a href="https://discord.gg/CK8hHpJGSM" target="_blank" class="btn btn-ghost">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.101 18.09.119 18.121.143 18.14a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
-                Discord
             </a>
         </div>
     </header>
 
-    <!-- INFO STRIP -->
-    <div class="info-strip" data-r>
-        <div class="info-cell">
-            <div class="info-icon">⚔️</div>
-            <span class="info-val" data-i18n="stat1_val">One Day Varo</span>
-            <span class="info-lbl" data-i18n="stat1_lbl">Event Format</span>
-        </div>
-        <div class="info-cell">
-            <div class="info-icon">🏆</div>
-            <span class="info-val" data-i18n="stat2_val">Season 1</span>
-            <span class="info-lbl" data-i18n="stat2_lbl">Saison</span>
-        </div>
-        <div class="info-cell">
-            <div class="info-icon">🎮</div>
-            <span class="info-val">SLPVP</span>
-            <span class="info-lbl" data-i18n="stat3_lbl">Server Name</span>
-        </div>
-    </div>
-
-    <div class="sep"></div>
-
-    <!-- TEAM -->
     <section id="team" class="team-section">
         <div class="sec-head" data-r>
-            <div class="sec-label" data-i18n="team_lbl">Operations</div>
+            <div class="sec-label" data-i18n="team_lbl">Staff</div>
             <h2 class="sec-title" data-i18n="team_title">Das Team</h2>
         </div>
-
-        <!-- Owner row -->
-        <div class="team-row team-row-2" style="max-width:500px;margin:0 auto 18px;">
-            <div class="team-card c-owner" data-r>
-                <span class="role-badge rb-owner">Owner</span>
-                <div class="team-avatar">ST</div>
-                <div class="t-name">SatoTTV</div>
-                <div class="t-role" data-i18n="role_owner">Owner</div>
+        <div class="team-grid">
+            <!-- Management Row -->
+            <div class="team-row team-row-2">
+                <div class="team-card c-owner" data-r>
+                    <span class="role-badge rb-owner">Owner</span>
+                    <div class="team-avatar">ST</div>
+                    <div class="t-name">SatoTTV</div>
+                    <div class="t-role">Management</div>
+                </div>
+                <div class="team-card c-owner" data-r>
+                    <span class="role-badge rb-owner">Owner</span>
+                    <div class="team-avatar">LS</div>
+                    <div class="t-name">Lisosky</div>
+                    <div class="t-role">Management</div>
+                </div>
             </div>
-            <div class="team-card c-owner" data-r style="transition-delay:.08s">
-                <span class="role-badge rb-owner">Owner</span>
-                <div class="team-avatar">LS</div>
-                <div class="t-name">Lisosky</div>
-                <div class="t-role" data-i18n="role_owner">Owner</div>
+            <!-- Developer Row -->
+            <div class="team-row team-row-1">
+                <div class="team-card c-dev" data-r>
+                    <span class="role-badge rb-dev">Developer</span>
+                    <div class="team-avatar">NC</div>
+                    <div class="t-name">Nicominecith</div>
+                    <div class="t-role">Lead Development</div>
+                </div>
             </div>
-        </div>
-
-        <!-- Dev (Founder) -->
-        <div class="team-row" style="max-width:260px;margin:0 auto 18px;">
-            <div class="team-card c-dev" data-r style="transition-delay:.15s">
-                <span class="role-badge rb-dev" data-i18n="badge_dev">Developer & Gründer</span>
-                <div class="team-avatar">NC</div>
-                <div class="t-name">Nicominecith_TTV</div>
-                <div class="t-role" data-i18n="role_dev">Lead Developer & Gründer</div>
+            <!-- Moderator Row -->
+            <div class="team-row team-row-1">
+                <div class="team-card c-mod" data-r>
+                    <span class="role-badge rb-mod">Moderator</span>
+                    <div class="team-avatar">JZ</div>
+                    <div class="t-name">J8n4z</div>
+                    <div class="t-role">Support</div>
+                </div>
             </div>
-        </div>
-
-        <!-- Mod -->
-        <div class="team-row" style="max-width:260px;margin:0 auto 18px;">
-            <div class="team-card c-mod" data-r style="transition-delay:.22s">
-                <span class="role-badge rb-mod">Moderator</span>
-                <div class="team-avatar">JZ</div>
-                <div class="t-name">J8n4z</div>
-                <div class="t-role" data-i18n="role_mod">Community Moderator</div>
-            </div>
-        </div>
-
-        <!-- Media row -->
-        <div class="team-row team-row-2" style="max-width:500px;margin:0 auto;">
-            <div class="team-card c-media" data-r style="transition-delay:.28s">
-                <span class="role-badge rb-media">Media</span>
-                <div class="team-avatar">EL</div>
-                <div class="t-name">Elitelaser</div>
-                <div class="t-role" data-i18n="role_media">Media Team</div>
-            </div>
-            <div class="team-card c-media" data-r style="transition-delay:.34s">
-                <span class="role-badge rb-media">Media</span>
-                <div class="team-avatar">MC</div>
-                <div class="t-name">Michel</div>
-                <div class="t-role" data-i18n="role_media">Media Team</div>
+            <!-- Media Row -->
+            <div class="team-row team-row-4">
+                <div class="team-card c-media" data-r>
+                    <span class="role-badge rb-media">Media</span>
+                    <div class="team-avatar">EL</div>
+                    <div class="t-name">Elitelaser</div>
+                    <div class="t-role">Design</div>
+                </div>
+                <div class="team-card c-media" data-r>
+                    <span class="role-badge rb-media">Media</span>
+                    <div class="team-avatar">MX</div>
+                    <div class="t-name">iTz_M4xii</div>
+                    <div class="t-role">Video Editor</div>
+                </div>
+                <div class="team-card c-media" data-r>
+                    <span class="role-badge rb-media">Media</span>
+                    <div class="team-avatar">MC</div>
+                    <div class="t-name">Michel</div>
+                    <div class="t-role">Content</div>
+                </div>
+                <div class="team-card c-media" data-r>
+                    <span class="role-badge rb-media">Media</span>
+                    <div class="team-avatar">QW</div>
+                    <div class="t-name">Qwixy6</div>
+                    <div class="t-role">Media Team</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <div class="sep" style="margin:60px 0 0;"></div>
-
-    <!-- TWITCH -->
     <section id="twitch" class="twitch-section">
         <div class="sec-head" data-r>
-            <div class="sec-label">Twitch</div>
-            <h2 class="sec-title" data-i18n="twitch_title">Live Streams</h2>
+            <div class="sec-label">Live</div>
+            <h2 class="sec-title" data-i18n="twitch_title">Streamer</h2>
         </div>
         <div class="twitch-grid">
-
-            <!-- Nicominecith_TTV -->
             <div class="twitch-card" data-r>
-                <div class="twitch-card-top">
-                    <span class="twitch-live-badge">Twitch</span>
-                </div>
-                <div class="twitch-avatar-wrap">
-                    <div class="twitch-avatar">
-                        <img 
-                            src="https://static-cdn.jtvnw.net/user-default-pictures-uv1/75305d54-c7cc-40d1-bb9c-91fbe85943c7-profile_image-70x70.png"
-                            onerror="this.style.display='none';this.parentElement.textContent='NC'"
-                            alt="Nicominecith"
-                            id="avatar-nico"
-                        >
-                    </div>
-                </div>
+                <div class="twitch-card-top"><span class="twitch-live-badge">Twitch</span></div>
+                <div class="twitch-avatar-wrap"><div class="twitch-avatar"><img src="https://static-cdn.jtvnw.net/jtv_user_pictures/3a479493-9c8e-4228-b011-2e6528d227b6-profile_image-70x70.png" alt="Nico"></div></div>
                 <div class="twitch-body">
                     <div class="twitch-name">Nicominecith</div>
                     <div class="twitch-handle">Nicominecith_TTV</div>
-                    <div class="twitch-desc" data-i18n="tc_nico">Developer & Gründer · Minecraft PvP</div>
-                    <a href="https://twitch.tv/Nicominecith_TTV" target="_blank" class="twitch-btn">
-                        <svg class="twitch-logo" viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>
-                        <span data-i18n="watch">Ansehen</span>
-                    </a>
+                    <div class="twitch-desc">Developer & Creator</div>
+                    <a href="https://twitch.tv/Nicominecith_TTV" target="_blank" class="twitch-btn" data-i18n="watch">Ansehen</a>
                 </div>
             </div>
-
-            <!-- lisoskytv -->
-            <div class="twitch-card" data-r style="transition-delay:.08s">
-                <div class="twitch-card-top">
-                    <span class="twitch-live-badge">Twitch</span>
-                </div>
-                <div class="twitch-avatar-wrap">
-                    <div class="twitch-avatar">
-                        <img
-                            src="https://static-cdn.jtvnw.net/user-default-pictures-uv1/75305d54-c7cc-40d1-bb9c-91fbe85943c7-profile_image-70x70.png"
-                            onerror="this.style.display='none';this.parentElement.textContent='LS'"
-                            alt="Lisosky"
-                            id="avatar-lisosky"
-                        >
-                    </div>
-                </div>
+            <div class="twitch-card" data-r>
+                <div class="twitch-card-top"><span class="twitch-live-badge">Twitch</span></div>
+                <div class="twitch-avatar-wrap"><div class="twitch-avatar"><img src="https://static-cdn.jtvnw.net/jtv_user_pictures/4d8f1e5a-382a-4f51-b8f4-4a520e58c67c-profile_image-70x70.png" alt="Lisosky"></div></div>
                 <div class="twitch-body">
                     <div class="twitch-name">Lisosky</div>
-                    <div class="twitch-handle">lisoskytv</div>
-                    <div class="twitch-desc" data-i18n="tc_lisosky">Owner · Minecraft Content</div>
-                    <a href="https://twitch.tv/lisoskytv" target="_blank" class="twitch-btn">
-                        <svg class="twitch-logo" viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>
-                        <span data-i18n="watch">Ansehen</span>
-                    </a>
+                    <div class="twitch-handle">LisoskyTV</div>
+                    <div class="twitch-desc">Owner & Pro Player</div>
+                    <a href="https://twitch.tv/lisoskytv" target="_blank" class="twitch-btn" data-i18n="watch">Ansehen</a>
                 </div>
             </div>
-
-            <!-- xSattoTTV -->
-            <div class="twitch-card" data-r style="transition-delay:.16s">
-                <div class="twitch-card-top">
-                    <span class="twitch-live-badge">Twitch</span>
-                </div>
-                <div class="twitch-avatar-wrap">
-                    <div class="twitch-avatar">
-                        <img
-                            src="https://static-cdn.jtvnw.net/user-default-pictures-uv1/75305d54-c7cc-40d1-bb9c-91fbe85943c7-profile_image-70x70.png"
-                            onerror="this.style.display='none';this.parentElement.textContent='SA'"
-                            alt="SatoTTV"
-                            id="avatar-sato"
-                        >
-                    </div>
-                </div>
+            <div class="twitch-card" data-r>
+                <div class="twitch-card-top"><span class="twitch-live-badge">Twitch</span></div>
+                <div class="twitch-avatar-wrap"><div class="twitch-avatar"><img src="https://static-cdn.jtvnw.net/jtv_user_pictures/5e581232-02e0-4960-9838-8c1d5300062c-profile_image-70x70.png" alt="Sato"></div></div>
                 <div class="twitch-body">
-                    <div class="twitch-name">SatoTTV</div>
-                    <div class="twitch-handle">xSattoTTV</div>
-                    <div class="twitch-desc" data-i18n="tc_sato">Owner · SLPVP Events</div>
-                    <a href="https://twitch.tv/xSattoTTV" target="_blank" class="twitch-btn">
-                        <svg class="twitch-logo" viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>
-                        <span data-i18n="watch">Ansehen</span>
-                    </a>
+                    <div class="twitch-name">Sato</div>
+                    <div class="twitch-handle">SatoTTV</div>
+                    <div class="twitch-desc">Owner & Management</div>
+                    <a href="https://twitch.tv/satottv" target="_blank" class="twitch-btn" data-i18n="watch">Ansehen</a>
                 </div>
             </div>
-
-            <!-- Elitelaser672 -->
-            <div class="twitch-card" data-r style="transition-delay:.24s">
-                <div class="twitch-card-top">
-                    <span class="twitch-live-badge">Twitch</span>
-                </div>
-                <div class="twitch-avatar-wrap">
-                    <div class="twitch-avatar">
-                        <img
-                            src="https://static-cdn.jtvnw.net/user-default-pictures-uv1/75305d54-c7cc-40d1-bb9c-91fbe85943c7-profile_image-70x70.png"
-                            onerror="this.style.display='none';this.parentElement.textContent='EL'"
-                            alt="Elitelaser"
-                            id="avatar-elite"
-                        >
-                    </div>
-                </div>
+            <div class="twitch-card" data-r>
+                <div class="twitch-card-top"><span class="twitch-live-badge">Twitch</span></div>
+                <div class="twitch-avatar-wrap"><div class="twitch-avatar"><img src="https://ui-avatars.com/api/?name=iTz_M4xii&background=9146ff&color=fff" alt="Maxi"></div></div>
                 <div class="twitch-body">
-                    <div class="twitch-name">Elitelaser</div>
-                    <div class="twitch-handle">Elitelaser672</div>
-                    <div class="twitch-desc" data-i18n="tc_elite">Media Team · Content Creator</div>
-                    <a href="https://twitch.tv/Elitelaser672" target="_blank" class="twitch-btn">
-                        <svg class="twitch-logo" viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>
-                        <span data-i18n="watch">Ansehen</span>
-                    </a>
+                    <div class="twitch-name">iTz_M4xii</div>
+                    <div class="twitch-handle">iTz_M4xii</div>
+                    <div class="twitch-desc">Media Content & Gameplay</div>
+                    <a href="https://twitch.tv/itz_m4xii" target="_blank" class="twitch-btn" data-i18n="watch">Ansehen</a>
                 </div>
             </div>
-
-            <!-- derdickemichi -->
-            <div class="twitch-card" data-r style="transition-delay:.32s">
-                <div class="twitch-card-top">
-                    <span class="twitch-live-badge">Twitch</span>
-                </div>
-                <div class="twitch-avatar-wrap">
-                    <div class="twitch-avatar">
-                        <img
-                            src="https://static-cdn.jtvnw.net/user-default-pictures-uv1/75305d54-c7cc-40d1-bb9c-91fbe85943c7-profile_image-70x70.png"
-                            onerror="this.style.display='none';this.parentElement.textContent='MC'"
-                            alt="Michel"
-                            id="avatar-michel"
-                        >
-                    </div>
-                </div>
+            <div class="twitch-card" data-r>
+                <div class="twitch-card-top"><span class="twitch-live-badge">Twitch</span></div>
+                <div class="twitch-avatar-wrap"><div class="twitch-avatar"><img src="https://ui-avatars.com/api/?name=Qwixy&background=9146ff&color=fff" alt="Qwixy"></div></div>
                 <div class="twitch-body">
-                    <div class="twitch-name">Michel</div>
-                    <div class="twitch-handle">derdickemichi</div>
-                    <div class="twitch-desc" data-i18n="tc_michel">Media Team · Content Creator</div>
-                    <a href="https://twitch.tv/derdickemichi" target="_blank" class="twitch-btn">
-                        <svg class="twitch-logo" viewBox="0 0 24 24"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg>
-                        <span data-i18n="watch">Ansehen</span>
-                    </a>
+                    <div class="twitch-name">Qwixy</div>
+                    <div class="twitch-handle">qwixy6</div>
+                    <div class="twitch-desc">PvP & Community Streams</div>
+                    <a href="https://twitch.tv/qwixy6" target="_blank" class="twitch-btn" data-i18n="watch">Ansehen</a>
                 </div>
             </div>
-
         </div>
-        <!-- Note about avatars -->
-        <p style="text-align:center;font-size:.72rem;color:var(--dim);margin-top:18px;" data-i18n="twitch_note">Profilbilder werden direkt von Twitch geladen · Profile pictures loaded directly from Twitch</p>
     </section>
 
-    <div class="sep"></div>
-
-    <!-- RULES + DISCORD -->
-    <div class="split">
-        <section id="rules">
-            <div class="sec-head" style="text-align:left;" data-r>
-                <div class="sec-label" data-i18n="rules_lbl">Spielregeln</div>
-                <h2 class="sec-title plain" data-i18n="rules_title">Regelwerk</h2>
-            </div>
-            <div class="rules-list">
-                <div class="rule-item" data-r>
-                    <span class="rule-num">01</span>
+    <section id="rules" class="rules-section">
+        <div class="sec-head" data-r>
+            <div class="sec-label" data-i18n="n_rules">Codex</div>
+            <h2 class="sec-title" data-i18n="rules_title">Die Regeln</h2>
+        </div>
+        <div class="split">
+            <div class="rules-list" data-r>
+                <div class="rule-item">
+                    <div class="rule-num">01</div>
                     <div class="rule-body">
-                        <div class="rule-t" data-i18n="r1t">Fairplay</div>
-                        <div class="rule-d" data-i18n="r1d">Keine Modifikationen, Hacks oder Cheats erlaubt.</div>
+                        <div class="rule-t" data-i18n="r1_t">Kein Cheating</div>
+                        <div class="rule-d" data-i18n="r1_d">Jegliche Art von Hacking oder Vorteils-Mods führt zum sofortigen Bann.</div>
                     </div>
                 </div>
-                <div class="rule-item" data-r style="transition-delay:.08s">
-                    <span class="rule-num">02</span>
+                <div class="rule-item">
+                    <div class="rule-num">02</div>
                     <div class="rule-body">
-                        <div class="rule-t" data-i18n="r2t">Solo heißt Solo</div>
-                        <div class="rule-d" data-i18n="r2d">Kein Teaming in Solo-Modi erlaubt.</div>
+                        <div class="rule-t" data-i18n="r2_t">Fairplay</div>
+                        <div class="rule-d" data-i18n="r2_d">Respektiere deine Gegner. Beleidigungen werden nicht geduldet.</div>
                     </div>
                 </div>
-                <div class="rule-item" data-r style="transition-delay:.16s">
-                    <span class="rule-num">03</span>
+                <div class="rule-item">
+                    <div class="rule-num">03</div>
                     <div class="rule-body">
-                        <div class="rule-t" data-i18n="r3t">Keine Exploits</div>
-                        <div class="rule-d" data-i18n="r3d">Bugusing oder Glitching führt zum sofortigen Ausschluss.</div>
+                        <div class="rule-t" data-i18n="r3_t">Teaming</div>
+                        <div class="rule-d" data-i18n="r3_d">Teaming ist nur erlaubt, wenn es explizit für die Runde angekündigt wurde.</div>
                     </div>
                 </div>
-                <div class="rule-item" data-r style="transition-delay:.24s">
-                    <span class="rule-num">04</span>
-                    <div class="rule-body">
-                        <div class="rule-t" data-i18n="r4t">Respekt</div>
-                        <div class="rule-d" data-i18n="r4d">Behandle alle Spieler mit Respekt. Toxisches Verhalten wird bestraft.</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="discord">
-            <div class="sec-head" style="text-align:left;" data-r>
-                <div class="sec-label">Community Hub</div>
-                <h2 class="sec-title plain">Discord</h2>
             </div>
             <div class="discord-card" data-r>
-                <iframe src="https://discord.com/widget?id=1503144190886809760&theme=dark" width="100%" height="320" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-                <div class="discord-foot">
-                    <a href="https://discord.gg/CK8hHpJGSM" target="_blank" class="dc-join">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.101 18.09.119 18.121.143 18.14a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
-                        <span data-i18n="dc_join">Discord beitreten</span>
-                    </a>
-                </div>
+                <iframe src="https://discord.com/widget?id=1251996541571436666&theme=dark" width="100%" height="320" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                <a href="https://discord.gg/CK8hHpJGSM" target="_blank" class="dc-join" style="display: flex; align-items: center; justify-content: center; gap: 10px; background: #5865F2; padding: 15px; text-decoration: none; color: #fff; font-weight: 700; font-size: .9rem;">
+                    <span>Discord beitreten</span>
+                </a>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
-    <footer data-r>
+    <footer>
         <div class="foot-logo">SLPVP</div>
-        <p class="foot-text">&copy; 2026 SLPVP Project · Made by Nicominecith & Team</p>
+        <p class="foot-text">© 2024 SLPVP — Staff Team</p>
     </footer>
 </div>
 
 <script>
-/* ── TRANSLATIONS ── */
-const T = {
-    de: {
-        n_team:'Team', n_streams:'Streams', n_rules:'Regeln', n_join:'Beitreten',
-        badge:'One Day Varo Event',
-        hero_sub:'Das ultimative Minecraft-PvP-Event. Ein Tag. Ein Überleben. Kämpfe gegen die Besten und schreibe Geschichte auf dem SLPVP-Server.',
-        btn_join:'Server beitreten', btn_streams:'Streams',
-        stat1_val:'One Day Varo', stat1_lbl:'Event Format', stat2_val:'Season 1', stat2_lbl:'Saison', stat3_lbl:'Server Name',
-        team_lbl:'Operations', team_title:'Das Team',
-        role_owner:'Owner', badge_dev:'Developer & Gründer', role_dev:'Lead Developer & Gründer',
-        role_mod:'Community Moderator', role_media:'Media Team',
-        twitch_title:'Live Streams',
-        tc_nico:'Developer & Gründer · Minecraft PvP',
-        tc_lisosky:'Owner · Minecraft Content',
-        tc_sato:'Owner · SLPVP Events',
-        tc_elite:'Media Team · Content Creator',
-        tc_michel:'Media Team · Content Creator',
-        watch:'Ansehen',
-        twitch_note:'Profilbilder werden direkt von Twitch geladen',
-        rules_lbl:'Spielregeln', rules_title:'Regelwerk',
-        r1t:'Fairplay', r1d:'Keine Modifikationen, Hacks oder Cheats erlaubt.',
-        r2t:'Solo heißt Solo', r2d:'Kein Teaming in Solo-Modi erlaubt.',
-        r3t:'Keine Exploits', r3d:'Bugusing oder Glitching führt zum sofortigen Ausschluss.',
-        r4t:'Respekt', r4d:'Behandle alle Spieler mit Respekt. Toxisches Verhalten wird bestraft.',
-        dc_join:'Discord beitreten',
-        modal_sub:'Klicke zum Kopieren', copy_ok:'✓ IP ERFOLGREICH KOPIERT!', close:'Schließen',
-    },
-    en: {
-        n_team:'Team', n_streams:'Streams', n_rules:'Rules', n_join:'Join Now',
-        badge:'One Day Varo Event',
-        hero_sub:'The ultimate Minecraft PvP event. One day. One survivor. Fight the best and make history on the SLPVP server.',
-        btn_join:'Join Server', btn_streams:'Streams',
-        stat1_val:'One Day Varo', stat1_lbl:'Event Format', stat2_val:'Season 1', stat2_lbl:'Season', stat3_lbl:'Server Name',
-        team_lbl:'Operations', team_title:'The Team',
-        role_owner:'Owner', badge_dev:'Developer & Founder', role_dev:'Lead Developer & Founder',
-        role_mod:'Community Moderator', role_media:'Media Team',
-        twitch_title:'Live Streams',
-        tc_nico:'Developer & Founder · Minecraft PvP',
-        tc_lisosky:'Owner · Minecraft Content',
-        tc_sato:'Owner · SLPVP Events',
-        tc_elite:'Media Team · Content Creator',
-        tc_michel:'Media Team · Content Creator',
-        watch:'Watch',
-        twitch_note:'Profile pictures loaded directly from Twitch',
-        rules_lbl:'Game Rules', rules_title:'Rulebook',
-        r1t:'Fair Play', r1d:'No modifications, hacks or cheats allowed.',
-        r2t:'Solo means Solo', r2d:'No teaming in solo modes allowed.',
-        r3t:'No Exploits', r3d:'Bug abuse or glitching results in immediate ban.',
-        r4t:'Respect', r4d:'Treat all players with respect. Toxic behavior will be punished.',
-        dc_join:'Join Discord',
-        modal_sub:'Click to copy', copy_ok:'✓ IP SUCCESSFULLY COPIED!', close:'Close',
-    }
-};
+    const i18n = {
+        de: {
+            n_team: "Team", n_streams: "Streams", n_rules: "Regeln", n_join: "Beitreten",
+            badge: "One Day Varo Event",
+            hero_sub: "Kämpfe gegen die Besten und schreibe Geschichte auf dem SLPVP-Server.",
+            btn_join: "Beitreten", btn_streams: "Streams",
+            team_lbl: "Staff", team_title: "Das Team",
+            twitch_title: "Streamer", watch: "Ansehen",
+            rules_title: "Die Regeln",
+            r1_t: "Kein Cheating", r1_d: "Jegliche Art von Hacking oder Vorteils-Mods führt zum sofortigen Bann.",
+            r2_t: "Fairplay", r2_d: "Respektiere deine Gegner. Beleidigungen werden nicht geduldet.",
+            r3_t: "Teaming", r3_d: "Teaming ist nur erlaubt, wenn es explizit für die Runde angekündigt wurde.",
+            modal_sub: "Klicke zum Kopieren", copy_ok: "✓ KOPIERT", close: "Schließen"
+        },
+        en: {
+            n_team: "Team", n_streams: "Streams", n_rules: "Rules", n_join: "Join",
+            badge: "One Day Varo Event",
+            hero_sub: "Fight against the best and make history on the SLPVP server.",
+            btn_join: "Join Now", btn_streams: "Streams",
+            team_lbl: "Staff", team_title: "The Team",
+            twitch_title: "Streamers", watch: "Watch",
+            rules_title: "The Rules",
+            r1_t: "No Cheating", r1_d: "Any hacking or advantage mods lead to an immediate ban.",
+            r2_t: "Fairplay", r2_d: "Respect your opponents. Insults are not tolerated.",
+            r3_t: "Teaming", r3_d: "Teaming is only allowed if explicitly announced for the round.",
+            modal_sub: "Click to copy", copy_ok: "✓ COPIED", close: "Close"
+        }
+    };
 
-let lang = 'de';
-function setLang(l) {
-    lang = l;
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-        const k = el.dataset.i18n;
-        if (T[l][k]) el.textContent = T[l][k];
-    });
-    document.getElementById('btnDE').classList.toggle('on', l==='de');
-    document.getElementById('btnEN').classList.toggle('on', l==='en');
-    document.documentElement.lang = l;
-}
-document.getElementById('btnDE').onclick = () => setLang('de');
-document.getElementById('btnEN').onclick = () => setLang('en');
+    let curLang = 'de';
+    const updateLang = (l) => {
+        curLang = l;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if(i18n[l][key]) el.textContent = i18n[l][key];
+        });
+        document.getElementById('btnDE').classList.toggle('on', l === 'de');
+        document.getElementById('btnEN').classList.toggle('on', l === 'en');
+    };
 
-/* ── TWITCH AVATARS via unofficial endpoint ── */
-const twitchChannels = {
-    'avatar-nico':    'nicominecith_ttv',
-    'avatar-lisosky': 'lisoskytv',
-    'avatar-sato':    'xsattottv',
-    'avatar-elite':   'elitelaser672',
-    'avatar-michel':  'derdickemichi'
-};
-Object.entries(twitchChannels).forEach(([id, channel]) => {
-    // Load avatar from Twitch's public thumbnail endpoint
-    const img = document.getElementById(id);
-    if (!img) return;
-    const twitchImg = new Image();
-    twitchImg.crossOrigin = 'anonymous';
-    twitchImg.onload = () => { img.src = twitchImg.src; };
-    twitchImg.onerror = () => {};
-    // Try Twitch CDN with common hash pattern — will fallback to initials via onerror if fails
-    twitchImg.src = `https://static-cdn.jtvnw.net/user-default-pictures-uv1/75305d54-c7cc-40d1-bb9c-91fbe85943c7-profile_image-70x70.png`;
-});
+    document.getElementById('btnDE').onclick = () => updateLang('de');
+    document.getElementById('btnEN').onclick = () => updateLang('en');
 
-/* ── MODAL ── */
-const modal = document.getElementById('modal');
-const show = () => { modal.style.display='flex'; };
-const hide = () => { modal.style.display='none'; };
+    const modal = document.getElementById('modal');
+    const openModal = () => modal.style.display = 'flex';
+    const closeModal = () => modal.style.display = 'none';
 
-document.getElementById('openIp').onclick = show;
-const mj = document.getElementById('mobJoin');
-if (mj) mj.onclick = e => { e.preventDefault(); show(); };
-document.getElementById('modalClose').onclick = hide;
-modal.addEventListener('click', e => { if (e.target===modal) hide(); });
+    document.getElementById('openIp').onclick = openModal;
+    const mj = document.getElementById('mobJoin');
+    if(mj) mj.onclick = (e) => { e.preventDefault(); openModal(); };
+    document.getElementById('modalClose').onclick = closeModal;
+    modal.onclick = (e) => { if(e.target === modal) closeModal(); };
 
-const ipCopy = document.getElementById('ipCopy');
-const copyOk = document.getElementById('copyOk');
-ipCopy.onclick = () => {
-    navigator.clipboard.writeText('nicominecith.qd.je:15613').then(() => {
-        copyOk.style.opacity='1';
-        setTimeout(() => copyOk.style.opacity='0', 2400);
-    });
-};
-ipCopy.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' ') ipCopy.click(); });
+    document.getElementById('ipCopy').onclick = function() {
+        const el = document.createElement('textarea');
+        el.value = "nicominecith.qd.je:15613";
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        const ok = document.getElementById('copyOk');
+        ok.style.opacity = '1';
+        setTimeout(() => ok.style.opacity = '0', 2000);
+    };
 
-/* ── HAMBURGER ── */
-const ham = document.getElementById('ham');
-const mob = document.getElementById('mobMenu');
-ham.onclick = () => {
-    const o = mob.classList.toggle('open');
-    ham.classList.toggle('open', o);
-};
-mob.querySelectorAll('a').forEach(a => a.onclick = () => { mob.classList.remove('open'); ham.classList.remove('open'); });
+    const ham = document.getElementById('ham');
+    const mobMenu = document.getElementById('mobMenu');
+    ham.onclick = () => {
+        ham.classList.toggle('open');
+        mobMenu.classList.toggle('open');
+    };
 
-/* ── SCROLL REVEAL ── */
-const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
-}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-document.querySelectorAll('[data-r]').forEach(el => obs.observe(el));
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) entry.target.classList.add('vis');
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('[data-r]').forEach(el => observer.observe(el));
 </script>
+
 </body>
 </html>
