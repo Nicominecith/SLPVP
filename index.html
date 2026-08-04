@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SLPVP — One Day Varo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #03030d;
@@ -25,6 +25,7 @@
             --glow-p: rgba(157,78,237,0.10);
             --r: 16px;
             --ease: 0.3s cubic-bezier(.4,0,.2,1);
+            --notch: 14px;
         }
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,7 +34,7 @@
         body {
             background: var(--bg);
             color: var(--text);
-            font-family: 'Exo 2', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
             overflow-x: hidden;
             min-height: 100vh;
         }
@@ -77,7 +78,7 @@
             padding: 14px 0; gap: 16px;
         }
         .nav-logo {
-            font-family: 'Orbitron', monospace; font-weight: 900;
+            font-family: 'Chakra Petch', sans-serif; font-weight: 700;
             font-size: 1.3rem; letter-spacing: 6px;
             background: linear-gradient(90deg, var(--blue), var(--purple));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -102,7 +103,7 @@
         .lang-btn {
             padding: 4px 14px; border-radius: 50px; border: none;
             background: transparent; color: var(--dim);
-            font-family: 'Exo 2', sans-serif; font-size: .7rem;
+            font-family: 'Space Grotesk', sans-serif; font-size: .7rem;
             font-weight: 700; letter-spacing: 1px; cursor: pointer;
             transition: var(--ease); text-transform: uppercase;
         }
@@ -150,15 +151,15 @@
             background: rgba(157,78,237,.07); border: 1px solid rgba(157,78,237,.28);
             color: var(--purple); font-size: .72rem; text-transform: uppercase; letter-spacing: 3px;
             box-shadow: 0 0 24px rgba(157,78,237,.1);
-            font-family: 'Share Tech Mono', monospace;
+            font-family: 'JetBrains Mono', monospace;
         }
         .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--purple); animation: blink 1.5s ease-in-out infinite; }
         @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
 
         h1 {
-            font-family: 'Orbitron', monospace;
+            font-family: 'Chakra Petch', sans-serif;
             font-size: clamp(3rem,9.5vw,5.5rem);
-            line-height: .88; letter-spacing: 3px; font-weight: 900;
+            line-height: .88; letter-spacing: 1px; font-weight: 700;
             background: linear-gradient(130deg, #ffffff 0%, var(--blue) 38%, var(--purple) 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             margin-bottom: 28px;
@@ -170,11 +171,12 @@
 
         .btn {
             display: inline-flex; align-items: center; gap: 9px;
-            padding: 14px 38px; border-radius: 12px;
-            font-family: 'Orbitron', monospace; font-weight: 600;
+            padding: 14px 38px; border-radius: 4px;
+            font-family: 'Chakra Petch', sans-serif; font-weight: 600;
             font-size: .72rem; text-transform: uppercase; letter-spacing: 2px;
             border: none; cursor: pointer; text-decoration: none;
             transition: var(--ease); position: relative; overflow: hidden;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
         }
         .btn-primary {
             background: linear-gradient(130deg, var(--blue), var(--purple));
@@ -197,22 +199,59 @@
         .stat-item {
             background: var(--surface); padding: 28px 20px; text-align: center;
             transition: var(--ease);
+            --notch: 12px;
+            clip-path: polygon(var(--notch) 0, 100% 0, 100% calc(100% - var(--notch)), calc(100% - var(--notch)) 100%, 0 100%, 0 var(--notch));
         }
         .stat-item:hover { background: var(--surface2); }
         .stat-val {
-            font-family: 'Orbitron', monospace; font-size: clamp(1.6rem,4vw,2.4rem);
-            font-weight: 900; line-height: 1;
+            font-family: 'Chakra Petch', sans-serif; font-size: clamp(1.6rem,4vw,2.4rem);
+            font-weight: 700; line-height: 1;
             background: linear-gradient(90deg, var(--blue), var(--purple));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             margin-bottom: 6px;
         }
-        .stat-lbl { font-size: .68rem; color: var(--dim); text-transform: uppercase; letter-spacing: 2px; font-family: 'Share Tech Mono', monospace; }
+        .stat-lbl { font-size: .68rem; color: var(--dim); text-transform: uppercase; letter-spacing: 2px; font-family: 'JetBrains Mono', monospace; }
 
         /* ── SECTION HEADS ── */
         .sec-head { text-align: center; margin-bottom: 50px; }
-        .sec-label { display: inline-block; font-size: .65rem; color: var(--blue); text-transform: uppercase; letter-spacing: 3.5px; margin-bottom: 12px; font-family: 'Share Tech Mono', monospace; }
-        .sec-title { font-family: 'Orbitron', monospace; font-size: clamp(1.5rem,4vw,2.3rem); font-weight: 700; background: linear-gradient(90deg, var(--blue), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 2px; }
+        .sec-label { display: inline-block; font-size: .65rem; color: var(--blue); text-transform: uppercase; letter-spacing: 3.5px; margin-bottom: 12px; font-family: 'JetBrains Mono', monospace; }
+        .sec-title { font-family: 'Chakra Petch', sans-serif; font-size: clamp(1.5rem,4vw,2.3rem); font-weight: 700; background: linear-gradient(90deg, var(--blue), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 2px; }
 
+        /* ── VIDEO SECTION ── */
+        .video-section { padding: 10px 0 50px; }
+        .video-frame {
+            position: relative; max-width: 900px; margin: 0 auto;
+            border-radius: 20px; overflow: hidden;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border: 1px solid var(--border2);
+            box-shadow: 0 0 0 1px rgba(0,212,255,.05), 0 30px 80px rgba(0,0,0,.55), 0 0 60px rgba(0,212,255,.08);
+        }
+        .video-frame::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 70px; z-index: 2; pointer-events: none;
+            background: linear-gradient(180deg, rgba(3,3,13,.6) 0%, transparent 100%);
+        }
+        .server-video {
+            position: absolute; inset: 0; width: 100%; height: 100%;
+            border: none; display: block;
+        }
+        .frame-corner {
+            position: absolute; width: 28px; height: 28px; z-index: 3; pointer-events: none;
+            border-color: var(--blue); opacity: .85;
+            filter: drop-shadow(0 0 6px rgba(0,212,255,.6));
+        }
+        .frame-corner.tl { top: 14px; left: 14px; border-top: 2px solid; border-left: 2px solid; border-radius: 4px 0 0 0; }
+        .frame-corner.tr { top: 14px; right: 14px; border-top: 2px solid; border-right: 2px solid; border-radius: 0 4px 0 0; }
+        .frame-corner.bl { bottom: 14px; left: 14px; border-bottom: 2px solid; border-left: 2px solid; border-radius: 0 0 0 4px; }
+        .frame-corner.br { bottom: 14px; right: 14px; border-bottom: 2px solid; border-right: 2px solid; border-radius: 0 0 4px 0; }
+        .video-tag {
+            position: absolute; top: 22px; left: 30px; z-index: 3;
+            display: flex; align-items: center; gap: 8px;
+            font-family: 'JetBrains Mono', monospace; font-size: .68rem;
+            letter-spacing: 2.5px; text-transform: uppercase; color: var(--text);
+            text-shadow: 0 2px 10px rgba(0,0,0,.8);
+        }
+        .video-tag .rec-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); box-shadow: 0 0 8px var(--red); animation: blink 1.5s ease-in-out infinite; }
         /* ── TEAM SECTION ── */
         .team-section { padding: 80px 0 30px; }
         .team-grid { display: flex; flex-direction: column; gap: 20px; }
@@ -225,9 +264,10 @@
 
         .team-card {
             background: var(--surface); border: 1px solid var(--border);
-            border-radius: var(--r); padding: 32px 20px 28px;
+            border-radius: 6px; padding: 32px 20px 28px;
             text-align: center; position: relative; overflow: hidden;
             transition: var(--ease);
+            clip-path: polygon(18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%, 0 18px);
         }
         .team-card::before {
             content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
@@ -251,7 +291,7 @@
             display: inline-block; padding: 4px 14px; border-radius: 50px;
             font-size: .62rem; font-weight: 800; text-transform: uppercase;
             letter-spacing: 1.5px; margin-bottom: 16px;
-            font-family: 'Share Tech Mono', monospace; border: 1px solid;
+            font-family: 'JetBrains Mono', monospace; border: 1px solid;
         }
         .rb-owner { background: rgba(255,60,60,.07); color: var(--red); border-color: rgba(255,60,60,.22); }
         .rb-dev   { background: rgba(0,212,255,.07); color: var(--blue); border-color: rgba(0,212,255,.22); }
@@ -264,7 +304,7 @@
             box-shadow: 0 0 18px rgba(0,0,0,.4), 0 0 0 4px rgba(0,212,255,.06);
             background: rgba(255,255,255,.04);
             display: flex; align-items: center; justify-content: center;
-            font-family: 'Orbitron', monospace; font-size: 1rem;
+            font-family: 'Chakra Petch', sans-serif; font-size: 1rem;
             font-weight: 700; color: var(--c-accent, var(--blue));
             position: relative; z-index: 1;
         }
@@ -279,8 +319,9 @@
         .rules-list { display: flex; flex-direction: column; gap: 14px; }
         .rule-item {
             display: flex; gap: 20px; background: var(--surface);
-            border: 1px solid var(--border); border-radius: 14px;
+            border: 1px solid var(--border); border-radius: 6px;
             padding: 22px 24px; transition: var(--ease); position: relative; overflow: hidden;
+            clip-path: polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px);
         }
         .rule-item::before {
             content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
@@ -288,15 +329,16 @@
             border-radius: 3px 0 0 3px;
         }
         .rule-item:hover { border-color: var(--border2); transform: translateX(4px); }
-        .rule-num { font-family: 'Orbitron', monospace; font-size: 1.1rem; color: var(--blue); font-weight: 700; min-width: 30px; opacity: .7; }
+        .rule-num { font-family: 'Chakra Petch', sans-serif; font-size: 1.1rem; color: var(--blue); font-weight: 700; min-width: 30px; opacity: .7; }
         .rule-t { font-weight: 700; color: var(--text); font-size: .92rem; margin-bottom: 6px; }
         .rule-d { font-size: .8rem; color: var(--mid); line-height: 1.6; }
 
         .discord-card {
             background: var(--surface); border: 1px solid rgba(88,101,242,.3);
-            border-radius: 20px; overflow: hidden;
+            border-radius: 8px; overflow: hidden;
             box-shadow: 0 8px 40px rgba(88,101,242,.15), 0 0 0 1px rgba(88,101,242,.1);
             transition: var(--ease);
+            clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
         }
         .discord-card:hover {
             border-color: rgba(88,101,242,.6);
@@ -310,7 +352,7 @@
             background: linear-gradient(135deg, #5865F2, #7983f5); padding: 18px;
             text-decoration: none; color: #fff;
             font-weight: 700; font-size: .9rem; letter-spacing: .5px;
-            transition: var(--ease); font-family: 'Exo 2', sans-serif;
+            transition: var(--ease); font-family: 'Space Grotesk', sans-serif;
         }
         .dc-join:hover { filter: brightness(1.15); transform: none; }
 
@@ -322,27 +364,28 @@
         }
         .modal-box {
             background: #090920; border: 1px solid rgba(0,212,255,.25);
-            border-radius: 22px; padding: 44px 34px; max-width: 440px; width: 100%;
+            border-radius: 10px; padding: 44px 34px; max-width: 440px; width: 100%;
             text-align: center; box-shadow: 0 30px 80px rgba(0,0,0,.6);
+            clip-path: polygon(22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px);
         }
         .modal-title {
-            font-family: 'Orbitron', monospace; letter-spacing: 3px; font-weight: 700;
+            font-family: 'Chakra Petch', sans-serif; letter-spacing: 3px; font-weight: 700;
             font-size: 1rem; background: linear-gradient(90deg, var(--blue), var(--purple));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             margin-bottom: 8px;
         }
         .ip-box {
             background: rgba(0,0,0,.6); padding: 16px 20px; border-radius: 12px; margin: 22px 0 12px;
-            font-family: 'Share Tech Mono', monospace; color: var(--blue); font-size: 1rem;
+            font-family: 'JetBrains Mono', monospace; color: var(--blue); font-size: 1rem;
             border: 1px solid rgba(0,212,255,.18); cursor: pointer; transition: var(--ease);
             letter-spacing: 1px;
         }
         .ip-box:hover { border-color: var(--blue); background: rgba(0,212,255,.05); }
-        .copy-ok { color: var(--green); font-size: .72rem; height: 18px; opacity: 0; transition: 0.3s; font-family: 'Share Tech Mono', monospace; }
+        .copy-ok { color: var(--green); font-size: .72rem; height: 18px; opacity: 0; transition: 0.3s; font-family: 'JetBrains Mono', monospace; }
         .modal-close {
             margin-top: 14px; background: rgba(255,255,255,.04); border: 1px solid var(--border);
             color: var(--dim); padding: 9px 24px; border-radius: 9px; cursor: pointer;
-            font-family: 'Exo 2', sans-serif; font-size: .82rem; transition: var(--ease);
+            font-family: 'Space Grotesk', sans-serif; font-size: .82rem; transition: var(--ease);
         }
         .modal-close:hover { border-color: var(--border2); color: var(--mid); }
 
@@ -352,7 +395,7 @@
             text-align: center;
         }
         .foot-logo {
-            font-family: 'Orbitron', monospace; font-size: 1.3rem; font-weight: 900;
+            font-family: 'Chakra Petch', sans-serif; font-size: 1.3rem; font-weight: 700;
             background: linear-gradient(90deg, var(--blue), var(--purple));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             margin-bottom: 10px; letter-spacing: 6px;
@@ -396,7 +439,7 @@
     <div class="modal-box">
         <div class="modal-title">SERVER IP</div>
         <p style="font-size:0.8rem; color:var(--dim);" data-i18n="modal_sub">Klicke zum Kopieren</p>
-        <div class="ip-box" id="ipCopy">nicominecith.qd.je:15613</div>
+        <div class="ip-box" id="ipCopy">zedix.de</div>
         <p class="copy-ok" id="copyOk" data-i18n="copy_ok">✓ KOPIERT</p>
         <button class="modal-close" id="modalClose" data-i18n="close">Schließen</button>
     </div>
@@ -407,6 +450,7 @@
         <div class="nav-inner">
             <div class="nav-logo">SLPVP</div>
             <div class="nav-links">
+                <a href="#video" data-i18n="n_video">Video</a>
                 <a href="#team" data-i18n="n_team">Team</a>
                 <a href="#rules" data-i18n="n_rules">Regeln</a>
                 <a href="https://discord.gg/CK8hHpJGSM" target="_blank">Discord</a>
@@ -420,6 +464,7 @@
             </div>
         </div>
         <div class="mob-menu" id="mobMenu">
+            <a href="#video" data-i18n="n_video">Video</a>
             <a href="#team" data-i18n="n_team">Team</a>
             <a href="#rules" data-i18n="n_rules">Regeln</a>
             <a href="#" id="mobJoin" data-i18n="n_join">Beitreten</a>
@@ -461,6 +506,21 @@
             <div class="stat-lbl" data-i18n="stat_format">Format</div>
         </div>
     </div>
+
+    <section id="video" class="video-section">
+        <div class="sec-head" data-r>
+            <div class="sec-label" data-i18n="v_label">Trailer</div>
+            <h2 class="sec-title" data-i18n="v_title">Server Vorstellung</h2>
+        </div>
+        <div class="video-frame" data-r>
+            <div class="video-tag"><span class="rec-dot"></span><span>ZEDIX.DE // TRAILER</span></div>
+            <div class="frame-corner tl"></div>
+            <div class="frame-corner tr"></div>
+            <div class="frame-corner bl"></div>
+            <div class="frame-corner br"></div>
+            <iframe class="server-video" src="https://www.youtube.com/embed/zTw9zFPhbUw?si=vpwWQ9HCw3c1Dq1f" title="SLPVP Server Vorstellung" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+    </section>
 
     <section id="team" class="team-section">
         <div class="sec-head" data-r>
@@ -553,10 +613,11 @@
 <script>
     const i18n = {
         de: {
-            n_team: "Team", n_rules: "Regeln", n_join: "Beitreten",
+            n_team: "Team", n_rules: "Regeln", n_join: "Beitreten", n_video: "Video",
             badge: "One Day Varo Event",
             hero_sub: "Kämpfe gegen die Besten und schreibe Geschichte auf dem SLPVP-Server.",
             btn_join: "Beitreten",
+            v_label: "Trailer", v_title: "Server Vorstellung",
             team_lbl: "Staff", team_title: "Das Team",
             rules_title: "Die Regeln",
             stat_duration: "Event Dauer", stat_mode: "Spielmodus", stat_format: "Format",
@@ -566,10 +627,11 @@
             modal_sub: "Klicke zum Kopieren", copy_ok: "✓ KOPIERT", close: "Schließen"
         },
         en: {
-            n_team: "Team", n_rules: "Rules", n_join: "Join",
+            n_team: "Team", n_rules: "Rules", n_join: "Join", n_video: "Video",
             badge: "One Day Varo Event",
             hero_sub: "Fight against the best and make history on the SLPVP server.",
             btn_join: "Join Now",
+            v_label: "Trailer", v_title: "Server Showcase",
             team_lbl: "Staff", team_title: "The Team",
             rules_title: "The Rules",
             stat_duration: "Event Duration", stat_mode: "Game Mode", stat_format: "Format",
@@ -605,9 +667,9 @@
     modal.onclick = (e) => { if(e.target === modal) closeModal(); };
 
     document.getElementById('ipCopy').onclick = function() {
-        navigator.clipboard.writeText("nicominecith.qd.je:15613").catch(() => {
+        navigator.clipboard.writeText("zedix.de").catch(() => {
             const el = document.createElement('textarea');
-            el.value = "nicominecith.qd.je:15613";
+            el.value = "zedix.de";
             document.body.appendChild(el);
             el.select();
             document.execCommand('copy');
